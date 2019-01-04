@@ -1,0 +1,51 @@
+//java code for the implementation of the selection short
+
+import java.io.*;
+
+class Selection_sort
+{
+    void printArray(int arr[])
+    {
+        int size=arr.length;
+        for(int i=0;i<size;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+    
+    void selSort(int arr[])
+    {
+        int n=arr.length;
+        int min_index,temp;
+        for (int i=0;i<n-1;i++)
+        {
+            min_index=i;
+            for(int j=i+1;j<n;j++)
+            {
+                if(arr[j]<arr[min_index])
+                    min_index=j;
+            }
+            temp=arr[min_index];
+            arr[min_index]=arr[i];
+            arr[i]=temp;
+        }
+    }
+    
+    
+}
+class main{
+
+public static void main(String args[])
+{
+    Selection_sort ss=new Selection_sort();
+    int arr[]={-9,67,108,-56,78,-2569};
+    System.out.println("The Array before the Selection Sort");
+    ss.printArray(arr);
+    ss.selSort(arr);
+    System.out.println("The Array after the Selection Sort");
+    ss.printArray(arr);
+    
+}
+}
+
