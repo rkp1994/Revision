@@ -1,0 +1,46 @@
+//php code implementation of the selection sort
+
+<?php
+
+function selection_sort(&$arr, $n)
+{
+    for($i=0;$i<$n;$i++)
+    {
+        $min_index=$i;
+        for ($j=$i+1;$j<$n;$j++)
+        {
+            if($arr[$min_index]>$arr[$j])
+            {
+                $min_index=$j;
+                
+            }
+            
+            $temp=$arr[$min_index];
+            $arr[$min_index]=$arr[$i];
+            $arr[$i]=$temp;
+        }
+    }
+}
+
+function print_array(&$arr, $n)
+{
+    for($i=0;$i<$n;$i++)
+    {
+        echo $arr[$i].' ';
+    }
+    echo "\n";
+}
+
+//Driver code
+
+$arr=array(-2,34,-9,-90,119,187);
+$len=count($arr);
+echo "The Array Before the Selection Sort:- \n";
+print_array($arr,$len);
+selection_sort($arr,$len);
+echo "The Array After the Selection Sort:- \n";
+print_array($arr,$len);
+
+?>
+
+
