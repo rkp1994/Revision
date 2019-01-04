@@ -1,0 +1,24 @@
+#include<stdio.h>
+
+
+//code to add the digits of a number
+int sum_digit(int n)
+{
+    int sum=0;
+    int t=n,a,b;
+    while(t!=0)
+    {
+        a=t%10;
+        sum=sum+a;
+        t=t/10;
+    }
+    return sum;
+}
+int main()
+{
+    int number;
+    scanf("%d",&number);
+    printf("The Sum of the digits of the nymber is :- %d", sum_digit(number));
+    return 0;
+    
+}
