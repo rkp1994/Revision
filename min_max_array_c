@@ -1,0 +1,33 @@
+// the code for finding the maximum and minimum in an std::array
+
+
+#include<stdio.h>
+
+void max_min(int array[], int n)
+{
+    int max=0;
+    int min=5;
+    int i;
+     
+    for(i=0;i<n;i++)
+    {
+      if (array[i]> max)
+       max=array[i];
+       
+       if (array[i]<min)
+         min=array[i];
+        
+    }
+    
+    printf("The maximum element in the array is :- %d\n", max);
+    printf("The Minimum element in the array is :- %d\n", min);
+    
+    
+}
+
+int main()
+{
+    int arr[]={1,2,3,4,5,6,7,8,9,10};
+    max_min(arr, 10);
+    return 0;
+}
