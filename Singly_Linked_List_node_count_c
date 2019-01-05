@@ -1,0 +1,84 @@
+
+//C code implemantation for the counting of the numkber of Node in a singly Linked List          
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+
+// Function for the printing of the Linked List
+
+void printList(struct Node *node)
+{
+    while(node!=NULL)
+    {
+        printf("%d ", node->data);
+        node=node->next;
+    }
+    printf("\n");
+}
+
+//Function for the pusing the Node in the Singly Linked List
+
+void push(struct Node** head_ref, int new_data)
+{
+    
+    struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+    
+    new_node->data=new_data;
+    
+    new_node->next=(*head_ref);
+    (*head_ref)=new_node;
+}
+
+
+//Function for the counting of teh number of the nodes in the Singly Linked List
+
+int count(struct Node *node)
+{
+    int count=0;
+    struct Node *temp=node;
+    
+    while(node!=NULL)
+    {
+         count++;
+        node=node->next;
+       
+    }
+    return count;
+}
+
+
+
+// main function for the implementation of the above functions
+
+
+int main()
+{
+    struct Node* head=NULL;
+    
+    push(&head, 10);
+    push(&head, 20);
+    push(&head, 30);
+    push(&head, 40);
+     push(&head, 50); push(&head, 60); push(&head, 70);
+      push(&head, 80);
+       push(&head, 90);
+
+    printf("The Created Linkd list is following:- \n");
+    
+    
+    printList(head);
+    
+    printf("The Number of the Nodes in the Singly linked List above is :- %d",count(head));
+    
+    
+    return 0;
+
+}
