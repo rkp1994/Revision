@@ -1,0 +1,83 @@
+    //C code implementation of the deletion of  node in teh singly linked list                  
+    
+    #include<stdio.h>
+    #include<stdlib.h>
+    
+  //structure definition of the node in the Singly Linked List  
+    struct Node{
+        int data;
+        struct Node *next;
+    };
+   //function for the printing of the singly linked list 
+    void print_list(struct Node *n)
+    {
+        while(n!=NULL)
+        {
+            printf(" %d ", n->data);
+            n=n->next;
+        }
+        printf("\n");
+    }
+    
+    
+    //function for the pusing the node in the sngly linked list
+    
+    void push(struct Node **head_ref, int new_data)
+    {
+        struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+        new_node->data=new_data;
+        
+        
+        new_node->next=(*head_ref);
+        (*head_ref)=new_node;
+    }
+    
+    //function for the deleting a node from the singly linked list
+    
+    void delete_node(struct Node **head_ref, int key)
+    {
+        struct Node *temp=(*head_ref), *prev;
+        
+        if(temp!=NULL && temp->data==key)
+        {
+            (*head_ref)=temp->next;
+            free(temp);
+            return;
+        }
+        
+        while(temp!=NULL && temp->data!=key)
+        {
+            prev=temp;
+            temp=temp->next;
+        }
+        
+        if(temp==NULL)
+            return;
+            
+        prev->next=temp->next;
+        free(temp);
+    }
+    
+    
+    //main function for the implementation of the above functions
+    
+    int main()
+    {
+        struct Node *head=NULL;
+        
+        push(&head, 10);
+        push(&head, 20);
+        push(&head, 30);
+        push(&head, 40);
+        push(&head, 50);
+        
+        printf("The Created Linked list is below:-\n");
+        print_list(head);
+        
+        delete_node(&head, 30);
+        
+        printf("The Singly linked list after the deletion of the key element:-\n");
+        print_list(head);
+        
+        return 0;
+    }
