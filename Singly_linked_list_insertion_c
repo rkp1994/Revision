@@ -1,0 +1,93 @@
+//code for the implentation of the new node in the singly linked std::std::list<T> ;
+
+#include<stdio.h>
+#include<stdlib.h>
+//structure of the linked list Node
+struct Node 
+{
+    int data;
+    struct Node *next;
+};
+
+
+// function for the printing of the Linked list
+
+void print_list(struct Node *n)
+{
+    while(n!=NULL)
+    {
+        printf("%d ", n->data);
+        n=n->next;
+    }
+    printf("\n");
+}
+
+//function for the inserting the node at the beginning of the singly linked List
+
+void push(struct Node **head_ref, int data)
+{
+    struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+    
+    new_node->data=data;
+    
+    new_node->next= (*head_ref);
+    
+    (*head_ref)=new_node;
+}
+
+//function for the inserting the node after the given node in the singly linked List
+
+void insert_after (struct Node *prev_node, int data)
+{
+    if(prev_node==NULL)
+       {
+           printf("The previous node cannot be Null\n");
+           return;
+       }
+    struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+    
+    new_node->data=data;
+    new_node->next=prev_node->next;
+    prev_node->next=new_node;
+}
+
+//function for adding the node at the last of a singly linked list
+
+void append(struct Node **head_ref, int data)
+{
+    struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+    
+    new_node->data=data;
+    new_node->next=NULL;
+    
+    if((*head_ref==NULL))
+    {
+        (*head_ref)=new_node;
+        return;
+    }
+    
+    struct Node *temp=(*head_ref);
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    
+    temp->next=new_node;
+    
+    return;
+    
+}
+
+// Main class for the implementation of the above Singly linked functions
+int main()
+{
+    struct Node *head=NULL;
+    append(&head, 20);
+    append(&head, 30);
+    push(&head, 10);
+    insert_after(head, 15);
+    
+    printf("The Created Linked List is below:-\n");
+    print_list(head);
+    return 0;
+    
+}
