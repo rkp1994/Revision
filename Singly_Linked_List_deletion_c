@@ -1,0 +1,79 @@
+/*
+code for the implementation of the deletion of the Singly Linked std::list
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+
+void printList(struct Node *temp)
+{
+    while(temp!=NULL)
+    {
+        printf("%d ", temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+//function for the inserting the node in the beginning of the singly linked list
+
+void push(struct Node** head_ref, int new_data)
+{
+    struct Node* new_node=(struct Node *)malloc(sizeof(struct Node));
+    
+    new_node->data=new_data;
+    
+    new_node->next=(*head_ref);
+    
+    (*head_ref)=new_node;
+}
+
+//function for the deletion of the whole linked list
+
+void deleteList(struct Node** head_ref)
+{
+    struct Node *current, *next;
+    current=(*head_ref);
+    
+    while(current!=NULL)
+    {
+        next=current->next;
+        free(current);
+        current=next;
+    }
+    *head_ref=NULL;
+}
+
+
+//Main function for the testing of the all above functions
+
+int main()
+{
+    struct Node* head=NULL;
+    
+    push(&head, 10);
+    push(&head, 10);
+    push(&head, 10);
+    push(&head, 10);
+    push(&head, 10);
+    push(&head, 10);
+    push(&head, 10);
+    push(&head, 10);
+    
+    printf("The created Singly Linled list is below:-\n");
+    printList(head);
+    
+    deleteList(&head);
+    
+    printf("The Singly linked list after the deletion of the whole list below:-\n");
+    
+    printList(head);
+    
+    return 0;
+    
+}
