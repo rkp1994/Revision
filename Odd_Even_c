@@ -1,0 +1,19 @@
+//C code for the Odd_even Number
+
+
+#include<stdio.h>
+
+int main()
+{
+    int n=890;
+    
+    if(n&1==1)
+    {
+        printf("Odd Number\n");
+    }
+    else
+    {
+        printf("Even Number\n");
+    }
+    return 0;
+}
