@@ -1,0 +1,90 @@
+// C code implemantation for finding a key in a singly linked std::list<> ;
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+// function for printing the singly linked list
+
+void printList(struct Node *n)
+{
+    while(n!=NULL)
+    {
+        printf("%d ", n->data);
+        n=n->next;
+    }
+    printf("\n");
+}
+
+//function for pushing the node in the singly linked list
+
+void push(struct Node** head_ref, int new_key)
+{
+    struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+    
+    new_node->data=new_key;
+    
+    new_node->next=(*head_ref);
+    (*head_ref)=new_node;
+}
+
+
+// Function for the finding of a specific Node in a singly linked list
+
+int findNode(struct Node* n, int key)
+{
+    struct Node* temp=n;
+    
+    while(temp!=NULL)
+    {
+        if(temp->data==key);
+        return 1;
+        temp=temp->next;
+    }
+    return 0;
+}
+
+//main function for the implementating the all the above functions
+
+
+int main()
+{
+    
+    
+    struct Node *head=NULL;
+    
+    push(&head, 10);
+    push(&head, 15);
+    push(&head, 25);
+    push(&head, 35);
+    push(&head, 45);
+    push(&head, 55);
+    push(&head, 65);
+    push(&head, 75);
+    push(&head, 95);
+    
+    printf("The Created Linked List is below:-\n");
+    
+    printList(head);
+    
+    int res=0;
+    printf("Res=%d\n", res);
+     res=findNode(head, 95);
+    
+    printf("Res=%d\n", res);
+    if(res==1)
+    {
+        printf("The Node is present in the Linked List\n");
+    }
+    else
+    {
+        printf("The Node is not present in teh Linked List\n");
+    }
+    return 0;
+    
+}
