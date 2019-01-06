@@ -1,0 +1,141 @@
+//  C code implementation of the doubly linked std::list
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+    struct Node *prev;
+};
+
+//function for the printing the list in forward direction
+
+void printForward(struct Node *node)
+{
+    struct Node *current;
+    current=node;
+    while(current!=NULL)
+    {
+        printf("%d ", current->data);
+        current=current->next;
+    }
+    printf("\n");
+}
+
+//function for the printing of the list in backward direction
+
+void printBackward(struct Node *node)
+{
+    struct Node *current, *previous;
+    current=node;
+    while(current!=NULL)
+    {
+        previous=current;
+        current=current->next;
+    }
+    
+    while(previous!=NULL)
+    {
+        printf("%d ", previous->data);
+        previous=previous->prev;
+    }
+    printf("\n");
+}
+
+//function for the adding the node in the beginning of the list
+
+void push(struct Node** head_ref, int new_data)
+{
+    struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+    new_node->data=new_data;
+    
+    new_node->next=(*head_ref);
+    new_node->prev=NULL;
+    
+    if((*head_ref)!=NULL)
+      (*head_ref)->prev=new_node;
+      
+      (*head_ref)=new_node;
+}
+
+// function for the inserting a new node after the previous node
+
+
+void insertAfter(struct Node *prev_node, int new_data)
+{
+    
+    struct Node *new_node=(struct Node *)malloc(sizeof(struct Node ));
+    if(prev_node==NULL)
+      printf("The Previous Node can not be NULL\n");
+      
+      new_node->data=new_data;
+      
+      new_node->next=prev_node->next;
+      prev_node->next=new_node;
+      new_node->prev=prev_node;
+      if(new_node->next!=NULL)
+         new_node->next->prev=new_node;
+         
+}
+
+//function for adding the node at the end of the list
+
+void append(struct Node** head_ref, int new_data)
+{
+    struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+    
+    new_node->data=new_data;
+    new_node->next=NULL;
+    new_node->prev=NULL;
+    
+    struct Node *current= (*head_ref);
+   
+    
+    //when the head_ref is NULL
+    
+    if((*head_ref)==NULL);
+    {
+       new_node->prev=NULL;
+       (*head_ref)=new_node;
+       return;
+    }
+    
+    while(current->next!=NULL)
+    {
+        current=current->next;
+    }
+    
+    current->next=new_node;
+    
+    
+    new_node->prev=current;
+    return;
+}
+
+//main function for the implementating of the above all functions
+
+int main()
+{
+    struct Node* head=NULL;
+    
+    push(&head, 60);
+    push(&head, 50);
+    push(&head, 40);
+    push(&head, 30);
+    push(&head, 20);
+    push(&head, 10);
+    //append(&head, 65);
+    insertAfter(head, 15);
+    
+    printf("The Created Doubly Linked List in forward direction is bewlo:-\n");
+    printForward(head);
+    
+    printf("The Created Doubly linked list in backward direction is below:- \n ");
+    
+    printBackward(head);
+    
+    return 0;
+    
+}
