@@ -1,0 +1,98 @@
+//Code for the implentation of the Binary Tree
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node* lchild;
+    struct Node* rchild;
+};
+
+// function for the returning of a Node 
+
+struct Node* newNode(int new_data)
+{
+    struct Node* new_node=(struct Node *)malloc(sizeof(struct Node));
+    new_node->data=new_data;
+    new_node->lchild=NULL;
+    new_node->rchild=NULL;
+    
+    return new_node;
+}
+
+
+// Inorder traversal of a Binary Tree
+
+void printInorder(struct Node *root)
+{
+    if(root==NULL)
+    return;
+    
+    printInorder(root->lchild);
+    
+    printf("%d ", root->data);
+    
+    printInorder(root->rchild);
+    
+}
+
+//Preorder traversal of a Binary Tree
+
+void printPreorder(struct Node *root)
+{
+    if(root==NULL)
+    return;
+     printf("%d ", root->data);
+     
+    printPreorder(root->lchild);
+    
+    printPreorder(root->rchild);
+    
+
+}
+
+
+//Postorder traversal of Binar Tree
+
+void printPostorder(struct Node *root)
+{
+    if(root==NULL)
+    return;
+    
+    
+    printPostorder(root->lchild);
+    
+    printPostorder(root->rchild);
+    
+     printf("%d ", root->data);
+    
+    
+}
+
+//main class for the implementation of the above functions
+
+int main()
+{
+    struct Node *root= newNode(1);
+    root->lchild= newNode(2);
+    root->rchild=newNode(3);
+    root->lchild->lchild=newNode(4);
+    root->lchild->rchild=newNode(5);
+    
+    
+    printf("The Inorder traversal of the Binary tree:-\n");
+    printInorder(root);
+    
+    printf("\n The Preorder traversal of the Binary Tree:-\n ");
+    printPreorder(root);
+    
+    printf("\nThe postorder traversal of the Binary tree:- \n");
+    printPostorder(root);
+    
+    return 0;
+    
+    
+}
+
