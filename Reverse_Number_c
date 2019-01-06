@@ -1,0 +1,28 @@
+// C code for the reversing a number
+
+#include<stdio.h>
+
+//function for the reversing a nuber
+
+int revNumber(int number)
+{
+    int reverse=0;
+    
+    int temp=number;
+    
+    while(temp!=0)
+    {
+        reverse=reverse*10;
+        reverse=reverse+temp%10;
+        temp=temp/10;
+    }
+    return reverse;
+}
+
+//main function
+
+int main()
+{
+  printf("The Reverse of the Number is:- %d", revNumber(5698));
+  return 0;
+}
