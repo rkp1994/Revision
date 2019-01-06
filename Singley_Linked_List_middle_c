@@ -1,0 +1,80 @@
+//print the middle of the singly linked std::list
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+
+//function for the printing of a singly linked list
+
+void printList(struct Node* head)
+{
+     while(head!=NULL)
+     {
+         printf("%d ", head->data);
+         head=head->next;
+     }
+     printf("\n");
+}
+
+// function for the pusing the new node at the biginning of the std::list
+
+void push(struct Node** head_ref, int new_data)
+{
+    
+  struct Node *new_node=(struct Node *)malloc(sizeof(struct Node));
+  
+  new_node->data=new_data;
+  
+  new_node->next=(*head_ref);
+  
+  (*head_ref)=new_node;
+  
+}
+
+//function for the printing of the middle of the list
+
+void printMiddle(struct Node** head_ref)
+{
+    struct Node *slow, *fast;
+    
+    slow=(*head_ref);
+    fast=(*head_ref);
+    
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    
+    printf("The Middle node of the linked list is %d \n",slow->data);
+    
+}
+
+
+//Main function for the testing of the above function
+
+int main()
+{
+    struct Node* head=NULL;
+    
+    push(&head, 50);
+    push(&head, 40);
+    push(&head, 30);
+    push(&head, 20);
+    push(&head, 10);
+    push(&head, 5);
+    
+    printf("The created linked list is below:-  \n");
+    
+    printList(head);
+    
+    printMiddle(&head);
+    
+    return 0;
+}
