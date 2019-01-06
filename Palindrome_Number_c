@@ -1,0 +1,33 @@
+//C code for the implementation of the palindrome Number
+
+#include<stdio.h>
+
+//functiom for the checking for the number is palindrome or not
+int isPalindrome(int num)
+{
+    int temp=num;
+    
+    int reverse=0;
+    while(temp!=0)
+    {
+        reverse=reverse*10;
+        reverse=reverse+temp%10;
+        temp=temp/10;
+    }
+    if(num==reverse)
+    return 1;
+    else
+    return 0;
+}
+
+int main()
+{
+    int num=1212;
+    
+    if(isPalindrome(num))
+    printf("The Number is a palindrome Number\n");
+    else
+    printf("The Number is not a palindrome Number\n");
+    
+    return 0;
+}
