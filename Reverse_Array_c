@@ -1,0 +1,44 @@
+// C code for reversing the array Elements
+
+#include<stdio.h>
+
+//function for the printing the elements in the array
+void printArray(int arr[], int n)
+{
+    int i;
+    for (i=0;i<n;i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+//Function for the reversing of the array
+
+void reverseArray(int arr[], int n)
+{
+    int rev[n];
+    int i, j=0;
+    for(i=n-1;i>0 || i==0;i--)
+    {
+        rev[j++]=arr[i];
+    }
+    
+    printf("The Array after the Reversal of the array:-\n");
+     printArray(rev, n);
+    
+}
+
+//Main function for the implementating of the above functions
+
+int main()
+{
+    int arr[]={1,2,3,4,5,6,7,8,9,10};
+    printf("The original Created array:-\n");
+    
+    printArray(arr, 10);
+    
+    reverseArray(arr, 10);
+    return 0;
+}
+
